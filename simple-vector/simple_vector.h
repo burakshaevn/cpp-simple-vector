@@ -79,7 +79,6 @@ public:
         swap(other);
     }
 
-
     //// При разрушении вектора должна освобождаться память, занимаемая его элементами.
     //~SimpleVector()     
     //{}
@@ -147,15 +146,6 @@ public:
         size_ = 0;
     }
 
-    // Метод Resize для изменения количества элементов в массиве. Метод должен предоставлять строгую гарантию безопасности исключений.
-    void my_fill(Iterator first, Iterator last) {
-        assert(first < last);
-
-        for (; first != last; ++first) {
-            *first = std::move(Type());
-        }
-    }
-
     // Изменяет размер массива.
     // При увеличении размера новые элементы получают значение по умолчанию для типа Type
     void Resize(size_t new_size) {
@@ -174,12 +164,12 @@ public:
             size_ = new_size;
         }
         if (new_size <= capacity_) {
-            my_fill(items_.Get() + size_, items_.Get() + size_ + new_size);
+            Fill(items_.Get() + size_, items_.Get() + size_ + new_size);
         }
         if (new_size > capacity_) {
             size_t new_capacity = std::max(new_size, capacity_ * 2);
             ArrayPtr<Type> temp(new_capacity);
-            my_fill(temp.Get(), temp.Get() + new_capacity);
+            Fill(temp.Get(), temp.Get() + new_capacity);
             std::move(items_.Get(), items_.Get() + capacity_, temp.Get());
             items_.swap(temp);
 
@@ -248,14 +238,20 @@ public:
     // Перемещающий оператор присваивания 
     SimpleVector& operator=(SimpleVector&& rhs) noexcept {
         if (this != &rhs) {
-            items_ = std::move(rhs.items_);
+            /*items_ = std::move(rhs.items_);
             size_ = std::move(rhs.size_);
-            capacity_ = std::move(rhs.capacity_);
+            capacity_ = std::move(rhs.capacity_);*/
+
+            items_ = std::move(rhs.items_);
+            size_ = std::exchange(rhs.size_, 0);
+            capacity_ = std::exchange(rhs.capacity_, 0);
+
             rhs.size_ = 0;
             rhs.capacity_ = 0;
         }
         return *this;
     }
+
     // Добавляет элемент в конец вектора
     // При нехватке места увеличивает вдвое вместимость вектора
     void PushBack(const Type& item) {
@@ -284,6 +280,7 @@ public:
     // Если перед вставкой значения вектор был заполнен полностью,
     // вместимость вектора должна увеличиться вдвое, а для вектора вместимостью 0 стать равной 1
     Iterator Insert(ConstIterator pos, const Type& value) {
+        assert(pos >= begin() && pos <= end());
         size_t count = pos - begin();
         if (size_ < capacity_) {
             std::copy_backward(begin() + count, end(), end() + 1);
@@ -304,6 +301,7 @@ public:
     }
 
     Iterator Insert(ConstIterator pos, Type&& value) {
+        assert(pos >= begin() && pos <= end());
         size_t count = pos - items_.Get();
         if (capacity_ == 0) {
             ArrayPtr<Type> temp(1);
@@ -331,14 +329,14 @@ public:
 
     // "Удаляет" последний элемент вектора. Вектор не должен быть пустым
     void PopBack() noexcept {
-        if (!IsEmpty()) {
-            --size_;
-        }
+        assert(!IsEmpty());
+        --size_;
     }
 
     // Удаляет элемент вектора в указанной позиции
     Iterator Erase(ConstIterator pos) {
         assert(pos != this->end());
+        assert(pos >= this->begin());
 
         size_t count = pos - items_.Get();
         std::move(items_.Get() + count + 1, items_.Get() + size_, items_.Get() + count);
@@ -371,6 +369,15 @@ private:
     ArrayPtr<Type> items_{};
     size_t capacity_{};
     size_t size_{};
+
+    // Метод Resize для изменения количества элементов в массиве. Метод должен предоставлять строгую гарантию безопасности исключений.
+    void Fill(Iterator first, Iterator last) {
+        assert(first < last);
+
+        for (; first != last; ++first) {
+            *first = std::move(Type());
+        }
+    }
 };
 
 ReserveProxyObj Reserve(size_t capacity_to_reserve) {

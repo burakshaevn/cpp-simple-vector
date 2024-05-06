@@ -70,18 +70,10 @@ public:
 
     // move конструктор
     SimpleVector(SimpleVector&& other)
-        //    : items_(std::move(other.items_))
-        //    , capacity_(std::exchange(other.capacity_, 0))
-        //    , size_(std::exchange(other.size_, 0))
-        //{}
         : items_(other.capacity_)
     {
         swap(other);
     }
-
-    //// При разрушении вектора должна освобождаться память, занимаемая его элементами.
-    //~SimpleVector()     
-    //{}
 
     // Метод GetSize для получения количества элементов в векторе. Не выбрасывает исключений.
     // Возвращает количество элементов в массиве
@@ -103,7 +95,6 @@ public:
 
     // Оператор [] для доступа к элементу вектора по его индексу. Имеет две версии — константную и неконстантную. Не выбрасывает исключений. 
     // Для корректной работы оператора индекс элемента массива не должен выходить за пределы массива.
-
     // Возвращает ссылку на элемент с индексом index
     Type& operator[](size_t index) noexcept {
         return items_[index];
@@ -115,7 +106,6 @@ public:
     }
 
     // Метод At для доступа к элементу вектора по его индексу, аналог метода at класса vector. В случае выхода индекса за пределы массива должен выбросить исключение std::out_of_range.
-
     // Возвращает константную ссылку на элемент с индексом index
     // Выбрасывает исключение std::out_of_range, если index >= size
     Type& At(size_t index) {
@@ -139,10 +129,8 @@ public:
     }
 
     // Метод Clear для очистки массива без изменения его вместимости. Не выбрасывает исключений.
-
     // Обнуляет размер массива, не изменяя его вместимость
     void Clear() noexcept {
-        //Resize(0);
         size_ = 0;
     }
 
@@ -219,18 +207,9 @@ public:
 
     // Оператор присваивания. Должен обеспечивать строгую гарантию безопасности исключений.
     SimpleVector& operator=(const SimpleVector& rhs) {
-        if (this != &rhs) { // Проверяем, что это не присваивание самому себе
-            // Очищаем текущий вектор, так как в него будут записаны уже новые данные
-            Clear();
-            // Увеличиваем вместимость при необходимости
-            if (rhs.capacity_ > capacity_) {
-                Resize(rhs.capacity_);
-            }
-            // Копируем элементы из rhs в текущий вектор
-            std::copy(rhs.begin(), rhs.end(), begin());
-            // Устанавливаем новые размер и вместимость
-            size_ = rhs.size_;
-            capacity_ = rhs.capacity_;
+        if (this != &rhs) {
+            SimpleVector temp(rhs);
+            swap(temp);
         }
         return *this;
     }
@@ -238,10 +217,6 @@ public:
     // Перемещающий оператор присваивания 
     SimpleVector& operator=(SimpleVector&& rhs) noexcept {
         if (this != &rhs) {
-            /*items_ = std::move(rhs.items_);
-            size_ = std::move(rhs.size_);
-            capacity_ = std::move(rhs.capacity_);*/
-
             items_ = std::move(rhs.items_);
             size_ = std::exchange(rhs.size_, 0);
             capacity_ = std::exchange(rhs.capacity_, 0);
@@ -370,7 +345,6 @@ private:
     size_t capacity_{};
     size_t size_{};
 
-    // Метод Resize для изменения количества элементов в массиве. Метод должен предоставлять строгую гарантию безопасности исключений.
     void Fill(Iterator first, Iterator last) {
         assert(first < last);
 
@@ -405,13 +379,11 @@ bool operator<(const SimpleVector<Type>& lhs, const SimpleVector<Type>& rhs) {
 template <typename Type>
 bool operator<=(const SimpleVector<Type>& lhs, const SimpleVector<Type>& rhs) {
     return !(rhs < lhs);
-    // list1 <= list2 — противоположно list2 < list1
 }
 
 template <typename Type>
 bool operator>(const SimpleVector<Type>& lhs, const SimpleVector<Type>& rhs) {
     return (rhs < lhs);
-    // выражение list1 > list2 эквивалентно list2 < list1
 }
 
 template <typename Type>

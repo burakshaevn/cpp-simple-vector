@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\burak\\source\\repos\\burakshaevn\\cpp-simple-vector\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\burak\\source\\repos\\burakshaevn\\cpp-simple-vector\\simple-vector\\simple_vector.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:simple-vector\\simple_vector.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\burak\\source\\repos\\burakshaevn\\cpp-simple-vector\\simple-vector\\array_ptr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:simple-vector\\array_ptr.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\burak\\source\\repos\\burakshaevn\\cpp-simple-vector\\simple-vector\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:simple-vector\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\burak\\source\\repos\\burakshaevn\\cpp-simple-vector\\simple-vector\\simple_vector.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:simple-vector\\simple_vector.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\burak\\source\\repos\\burakshaevn\\cpp-simple-vector\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
@@ -26,11 +26,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "array_ptr.h",
               "DocumentMoniker": "C:\\Users\\burak\\source\\repos\\burakshaevn\\cpp-simple-vector\\simple-vector\\array_ptr.h",
               "RelativeDocumentMoniker": "simple-vector\\array_ptr.h",
@@ -51,25 +55,24 @@
               "RelativeToolTip": ".gitignore",
               "ViewState": "AQIAAFcBAAAAAAAAAAAQwGkBAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-04-29T06:43:58.216Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-29T06:43:58.216Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "simple_vector.h",
               "DocumentMoniker": "C:\\Users\\burak\\source\\repos\\burakshaevn\\cpp-simple-vector\\simple-vector\\simple_vector.h",
               "RelativeDocumentMoniker": "simple-vector\\simple_vector.h",
               "ToolTip": "C:\\Users\\burak\\source\\repos\\burakshaevn\\cpp-simple-vector\\simple-vector\\simple_vector.h",
               "RelativeToolTip": "simple-vector\\simple_vector.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAHsBAAAYAAAA",
+              "ViewState": "AQIAAGoBAAAAAAAAAAAgwHcBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-04-29T06:43:56.062Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\Users\\burak\\source\\repos\\burakshaevn\\cpp-simple-vector\\simple-vector\\main.cpp",
               "RelativeDocumentMoniker": "simple-vector\\main.cpp",
@@ -77,8 +80,7 @@
               "RelativeToolTip": "simple-vector\\main.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-04-29T06:43:50.67Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-29T06:43:50.67Z"
             }
           ]
         }
